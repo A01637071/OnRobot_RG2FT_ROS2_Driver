@@ -1,5 +1,7 @@
 # OnRobot-RG2FT-ROS
 
+If you are looking for a ROS2 Driver, try this one: https://github.com/fraunhoferhhi/Ros2-OnRobot-RG2-FT
+
 This repository contains an unofficial ROS driver for the OnRobot RG2-FT Gripper. The driver enables you to control and monitor the gripper's state through publisher and subscriber interfaces. Additionally, a gripper action server is provided, which can be integrated with MoveIt for motion planning.
 
 The OnRobot RG2-FT Gripper is equipped with force torque sensors and proximity sensors on its fingertips. This driver reads and publishes this sensor data as ROS messages.
