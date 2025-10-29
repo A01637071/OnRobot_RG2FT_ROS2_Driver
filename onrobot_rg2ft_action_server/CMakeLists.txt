@@ -1,38 +1,31 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(onrobot_rg2ft_action_server)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(control_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(onrobot_rg2ft_msgs REQUIRED)
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  actionlib
-  actionlib_msgs
-  control_msgs
-  onrobot_rg2ft_msgs
-  roscpp
-  sensor_msgs
-)
+include_directories(include)
 
-catkin_package(
-  INCLUDE_DIRS include
-  CATKIN_DEPENDS 
-  actionlib
-  actionlib_msgs
-  control_msgs
-  onrobot_rg2ft_msgs
-  roscpp
-  sensor_msgs
-)
-
-
-include_directories( include ${catkin_INCLUDE_DIRS})
-
-add_executable(onrobot_rg2ft_action_server 
-  src/onrobot_rg2ft_action_server_node.cpp 
+add_executable(onrobot_rg2ft_action_server_node
+  src/onrobot_rg2ft_action_server_node.cpp
   src/onrobot_rg2ft_action_server.cpp
 )
-add_dependencies(onrobot_rg2ft_action_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(onrobot_rg2ft_action_server ${catkin_LIBRARIES} )
+
+ament_target_dependencies(onrobot_rg2ft_action_server_node
+  rclcpp
+  rclcpp_action
+  control_msgs
+  sensor_msgs
+  onrobot_rg2ft_msgs
+)
+
+install(TARGETS
+  onrobot_rg2ft_action_server_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_package()

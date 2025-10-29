@@ -1,23 +1,22 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(onrobot_rg2ft_control)
-find_package(catkin REQUIRED COMPONENTS
-  rospy
-  onrobot_rg2ft_msgs
-  std_srvs
-)
 
-catkin_python_setup()
+find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(onrobot_rg2ft_msgs REQUIRED)
 
-catkin_package(
-  LIBRARIES ${PROJECT_NAME}
-  DEPENDS
-  CATKIN_DEPENDS
-  rospy
-  onrobot_rg2ft_msgs
-  std_srvs
-)
+# Instalar el paquete Python
+ament_python_install_package(${PROJECT_NAME})
 
-catkin_install_python(
+# Instalar los nodos Python directamente como ejecutables
+install(
   PROGRAMS
-  scripts/OnRobotRG2FTDriver.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+    onrobot_rg2ft_control/OnRobotRG2FTDriver.py
+    onrobot_rg2ft_control/control_gripper_terminal.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_package()
+

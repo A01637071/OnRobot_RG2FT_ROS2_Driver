@@ -3,12 +3,20 @@
   <name>onrobot_rg2ft_control</name>
   <version>1.0.0</version>
   <description>Package to control an OnRobot RG2-FT gripper</description>
-  <maintainer email="itchuang@ucdavis.edu">Ian Chuang</maintainer>
-  <author email="itchuang@ucdavis.edu">Ian Chuang</author>
+  <maintainer email="A01637071@tec.mx">Gilberto López</maintainer>
+  <author email="A01637071@tec.mx">Gilberto López</author>
   <license>MIT</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <depend>rospy</depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <depend>rclpy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
   <depend>onrobot_rg2ft_msgs</depend>
-  <depend>std_srvs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>
+

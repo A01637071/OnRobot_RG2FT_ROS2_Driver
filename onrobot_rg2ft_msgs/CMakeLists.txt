@@ -1,20 +1,19 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(onrobot_rg2ft_msgs)
 
-find_package(catkin REQUIRED COMPONENTS message_generation)
+find_package(ament_cmake REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(action_msgs REQUIRED)
 
-add_message_files(
-  FILES
-  RG2FTCommand.msg
-  RG2FTState.msg
-) 
-
-add_service_files(
-  FILES
-  SetProximityOffsets.srv
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/OnRobotRG2FTData.msg"
+  "msg/RG2FTCommand.msg"
+  "srv/SetProximityOffsets.srv"
+  DEPENDENCIES builtin_interfaces std_msgs action_msgs
 )
 
-generate_messages(DEPENDENCIES)
-catkin_package(CATKIN_DEPENDS message_runtime)
+ament_export_dependencies(rosidl_default_runtime)
+ament_package()
 
-                      

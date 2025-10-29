@@ -1,13 +1,28 @@
-## ! DO NOT MANUALLY INVOKE THIS setup.py, USE CATKIN INSTEAD
-
 from setuptools import setup
-from catkin_pkg.python_setup import generate_distutils_setup
 
-# fetch values from package.xml
-setup_args = generate_distutils_setup(
-    packages=['onrobot_rg2ft_control'],
-    package_dir={'': 'src'},
-    requires=['rospy']
+package_name = 'onrobot_rg2ft_control'
+
+setup(
+    name=package_name,
+    version='1.0.0',
+    packages=[package_name],
+    data_files=[
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+    ],
+    install_requires=['setuptools'],
+    zip_safe=True,
+    maintainer='Gilberto López',
+    maintainer_email='A01637071@tec.mx',
+    description='Control del gripper OnRobot RG2FT desde ROS2',
+    license='MIT',
+    tests_require=['pytest'],
+    entry_points={
+        'console_scripts': [
+            'onrobot_rg2ft_driver = onrobot_rg2ft_control.OnRobotRG2FTDriver:main',
+            'control_gripper_terminal = onrobot_rg2ft_control.control_gripper_terminal:main',
+        ],
+    },
 )
 
-setup(**setup_args)

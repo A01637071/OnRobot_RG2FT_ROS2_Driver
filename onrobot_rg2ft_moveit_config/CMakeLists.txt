@@ -1,10 +1,17 @@
-cmake_minimum_required(VERSION 3.1.3)
+cmake_minimum_required(VERSION 3.5)
 project(onrobot_rg2ft_moveit_config)
 
-find_package(catkin REQUIRED)
+# ament package
+find_package(ament_cmake REQUIRED)
 
-catkin_package()
+# Instalación de directorios launch y config
+install(DIRECTORY launch
+        DESTINATION share/${PROJECT_NAME}/
+        PATTERN "setup_assistant.launch" EXCLUDE)
 
-install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-  PATTERN "setup_assistant.launch" EXCLUDE)
-install(DIRECTORY config DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+install(DIRECTORY config
+        DESTINATION share/${PROJECT_NAME}/)
+
+# Configuración final de ament
+ament_package()
+
